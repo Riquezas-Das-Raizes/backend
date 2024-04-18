@@ -1,8 +1,14 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+// App
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
+
+// Categoria
 import { Categoria } from './categoria/entities/categoria.entity';
+import { CategoriaService } from './categoria/services/categoria.service';
+import { CategoriaController } from './categoria/controller/categoria.controller';
 
 @Module({
   imports: [
@@ -11,11 +17,10 @@ import { Categoria } from './categoria/entities/categoria.entity';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'rootroot',
+      password: 'root',
       database: 'db_riquezaraizes',
       entities: [Categoria],
       synchronize: true,
-      logging: true,
     }),
   ],
   controllers: [AppController],
