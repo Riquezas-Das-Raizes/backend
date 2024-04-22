@@ -9,6 +9,7 @@ import { AppService } from './app.service';
 import { Categoria } from './categoria/entities/categoria.entity';
 import { CategoriaService } from './categoria/services/categoria.service';
 import { CategoriaController } from './categoria/controller/categoria.controller';
+import { CategoriaModule } from './categoria/categoria.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { CategoriaController } from './categoria/controller/categoria.controller
       entities: [Categoria],
       synchronize: true,
     }),
+    CategoriaModule
   ],
   controllers: [AppController],
   providers: [AppService],
