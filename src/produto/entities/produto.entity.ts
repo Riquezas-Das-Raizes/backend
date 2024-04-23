@@ -13,7 +13,7 @@ export class Produto {
   @Column({ length: 100, nullable: false })
   nome: string;
 
-  @Transform(({ value }: TransformFnParams) => value?.trim())
+  
   @IsNotEmpty()
   @Column('decimal', { precision: 10, scale: 2 })
   preco: number;
