@@ -12,6 +12,8 @@ import { CategoriaController } from './categoria/controller/categoria.controller
 import { CategoriaModule } from './categoria/categoria.module';
 import { ProdutoModule } from './produto/produto.module';
 import { Produto } from './produto/entities/produto.entity';
+import { Usuario } from './usuario/entities/usuario.entity';
+import { UsuarioModule } from './usuario/usuario.module';
 
 @Module({
   imports: [
@@ -22,11 +24,12 @@ import { Produto } from './produto/entities/produto.entity';
       username: 'root',
       password: 'root',
       database: 'db_riquezaraizes',
-      entities: [Categoria, Produto],
+      entities: [Categoria, Produto, Usuario],
       synchronize: true,
     }),
     CategoriaModule,
-    ProdutoModule
+    ProdutoModule,
+    UsuarioModule
   ],
   controllers: [],
   providers: [],
