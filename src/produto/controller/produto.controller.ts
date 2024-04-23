@@ -42,5 +42,4 @@ export class ProdutoController {
   delete(@Param('id', ParseIntPipe) id: number){
     return this.ProdutoService.delete(id);
   }
-
 }
