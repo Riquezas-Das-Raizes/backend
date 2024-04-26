@@ -54,6 +54,10 @@ export class UsuarioService {
         let buscaUsuario = await this.findByUsuario(usuario.usuario);
 
         if (!buscaUsuario) {
+            if (!usuario.imagem){
+                usuario.imagem = 'https://i.imgur.com/Sk5SjWE.jpg'; 
+            }
+
             usuario.senha = await this.bcrypt.criptografarSenha(usuario.senha)
             return await this.usuarioRepository.save(usuario);
         }
@@ -72,6 +76,10 @@ export class UsuarioService {
 
         if (buscaUsuario && buscaUsuario.id !== usuario.id)
             throw new HttpException('Usuário (e-mail) já Cadastrado!', HttpStatus.BAD_REQUEST);
+
+        if (!usuario.imagem){
+            usuario.imagem = 'https://i.imgur.com/Sk5SjWE.jpg'; 
+        }
 
         usuario.senha = await this.bcrypt.criptografarSenha(usuario.senha)
         return await this.usuarioRepository.save(usuario);
