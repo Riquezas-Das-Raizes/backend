@@ -1,6 +1,7 @@
 import { Transform, TransformFnParams } from 'class-transformer';
 import { IsNotEmpty, IsEmail } from 'class-validator';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Produto } from 'src/produto/entities/produto.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'tb_usuarios' })
 export class Usuario {
@@ -22,7 +23,9 @@ export class Usuario {
   @Column({ length: 1000, nullable: false })
   senha: string;
 
-  @IsNotEmpty()
-  @Column({ length: 1000, nullable: false })
+  @Column({ length: 1000, nullable: true })
   imagem: string;
+
+  @OneToMany(() => Produto, (produto) => produto.usuario)
+  produto: Produto[];
 }

@@ -10,23 +10,26 @@ export class ProdutoService {
     private produtoRepository: Repository<Produto>,
   ) {}
 
-  async findAll(): Promise<Produto[]> {
-    return await this.produtoRepository.find({
-      relations: {
-        categoria: true,
-      },
-    });
-  }
+    async findAll(): Promise<Produto[]> {
+        return await this.produtoRepository.find({
+            relations: {
+                categoria: true,
+                usuario: true
+            }
+        });
+    }
 
-  async findById(id: number): Promise<Produto> {
-    let produto = await this.produtoRepository.findOne({
-      where: {
-        id,
-      },
-      relations: {
-        categoria: true,
-      },
-    });
+    async findById(id: number): Promise<Produto> {
+
+        let produto = await this.produtoRepository.findOne({
+            where: {
+                id
+            },
+            relations: {
+              categoria: true,
+              usuario: true
+            }
+        });
 
     if (!produto)
       throw new HttpException('Produto não encontrado!', HttpStatus.NOT_FOUND);
@@ -34,16 +37,17 @@ export class ProdutoService {
     return produto;
   }
 
-  async findByNome(nome: string): Promise<Produto[]> {
-    return await this.produtoRepository.find({
-      where: {
-        nome: ILike(`%${nome}%`),
-      },
-      relations: {
-        categoria: true,
-      },
-    });
-  }
+    async findByNome(nome: string): Promise<Produto[]> {
+        return await this.produtoRepository.find({
+            where: {
+                nome: ILike(`%${nome}%`)
+            },
+            relations: {
+              categoria: true,
+              usuario: true
+            }
+        })
+    }
 
   async create(Produto: Produto): Promise<Produto> {
     return await this.produtoRepository.save(Produto);
