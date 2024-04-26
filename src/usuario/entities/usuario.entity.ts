@@ -1,7 +1,6 @@
 import { Transform, TransformFnParams } from 'class-transformer';
 import { IsNotEmpty, IsEmail } from 'class-validator';
-import { Categoria } from 'src/categoria/entities/categoria.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'tb_usuarios' })
 export class Usuario {
@@ -26,9 +25,4 @@ export class Usuario {
   @IsNotEmpty()
   @Column({ length: 1000, nullable: false })
   imagem: string;
-  
-  @ManyToOne(() => Categoria, (categoria) => categoria.produto, {
-    onDelete: "CASCADE"
-  })
-  categoria: Categoria;
 }
