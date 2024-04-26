@@ -3,7 +3,6 @@ import { Produto } from "src/Produto/entities/Produto.entity";
 import { JwtAuthGuard } from "src/auth/guard/jwt-auth.guard";
 import { ProdutoService } from "src/produto/service/produto.service"
 
-@UseGuards(JwtAuthGuard)
 @Controller("/produtos")
 export class ProdutoController {
   constructor(private readonly ProdutoService: ProdutoService) { }
@@ -14,6 +13,7 @@ export class ProdutoController {
     return this.ProdutoService.findAll();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get('/:id')
   @HttpCode(HttpStatus.OK)
   findById(@Param('id', ParseIntPipe) id: number): Promise<Produto> {
@@ -26,18 +26,21 @@ export class ProdutoController {
     return this.ProdutoService.findByNome(nome);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   @HttpCode(HttpStatus.CREATED)
   create(@Body() Produto: Produto): Promise<Produto> {
     return this.ProdutoService.create(Produto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Put()
   @HttpCode(HttpStatus.OK)
   update(@Body() Produto: Produto): Promise<Produto> {
     return this.ProdutoService.update(Produto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete('/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
   delete(@Param('id', ParseIntPipe) id: number){
