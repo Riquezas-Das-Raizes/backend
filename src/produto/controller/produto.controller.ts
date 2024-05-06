@@ -1,11 +1,14 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put, UseGuards } from "@nestjs/common";
+import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 import { Produto } from "src/Produto/entities/Produto.entity";
 import { JwtAuthGuard } from "src/auth/guard/jwt-auth.guard";
 import { ProdutoService } from "src/produto/service/produto.service"
 
-@Controller("/produtos")
+@ApiTags('Postagem')
+@Controller('/produtos')
+@ApiBearerAuth()
 export class ProdutoController {
-  constructor(private readonly ProdutoService: ProdutoService) { }
+  constructor(private readonly ProdutoService: ProdutoService) {}
 
   @Get()
   @HttpCode(HttpStatus.OK)
@@ -43,7 +46,7 @@ export class ProdutoController {
   @UseGuards(JwtAuthGuard)
   @Delete('/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  delete(@Param('id', ParseIntPipe) id: number){
+  delete(@Param('id', ParseIntPipe) id: number) {
     return this.ProdutoService.delete(id);
   }
 }
