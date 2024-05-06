@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Transform, TransformFnParams } from 'class-transformer';
 import { IsNotEmpty } from 'class-validator';
-import { Categoria } from 'src/categoria/entities/categoria.entity';
-import { Usuario } from 'src/usuario/entities/usuario.entity';
+import { Categoria } from '../../categoria/entities/categoria.entity';
+import { Usuario } from '../../usuario/entities/usuario.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'tb_produtos' })
@@ -32,13 +32,13 @@ export class Produto {
   @ApiProperty()
   descricao: string;
 
-  @ApiProperty()
+  @ApiProperty({ type: () => Categoria })
   @ManyToOne(() => Categoria, (categoria) => categoria.produto, {
     onDelete: 'CASCADE',
   })
   categoria: Categoria;
 
-  @ApiProperty()
+  @ApiProperty({ type: () => Usuario })
   @ManyToOne(() => Usuario, (usuario) => usuario.produto, {
     onDelete: 'CASCADE',
   })

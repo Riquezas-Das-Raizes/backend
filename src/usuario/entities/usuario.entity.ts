@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Transform, TransformFnParams } from 'class-transformer';
 import { IsNotEmpty, IsEmail } from 'class-validator';
-import { Produto } from 'src/produto/entities/produto.entity';
+import { Produto } from '../../produto/entities/produto.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'tb_usuarios' })
@@ -30,7 +30,7 @@ export class Usuario {
   @Column({ length: 1000, nullable: true })
   @ApiProperty()
   imagem: string;
-  
+
   @ApiProperty()
   @OneToMany(() => Produto, (produto) => produto.usuario)
   produto: Produto[];

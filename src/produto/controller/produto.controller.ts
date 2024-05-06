@@ -1,8 +1,20 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put, UseGuards } from "@nestjs/common";
-import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
-import { Produto } from "src/Produto/entities/Produto.entity";
-import { JwtAuthGuard } from "src/auth/guard/jwt-auth.guard";
-import { ProdutoService } from "src/produto/service/produto.service"
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { Produto } from '../../produto/entities/produto.entity';
+import { JwtAuthGuard } from '../../auth/guard/jwt-auth.guard';
+import { ProdutoService } from '../../produto/service/produto.service';
 
 @ApiTags('Postagem')
 @Controller('/produtos')
