@@ -16,7 +16,7 @@ import { CategoriaService } from '../services/categoria.service';
 import { JwtAuthGuard } from 'src/auth/guard/jwt-auth.guard';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-@ApiTags('Tema')
+@ApiTags('Categorias')
 @Controller('/categorias')
 @ApiBearerAuth()
 export class CategoriaController {

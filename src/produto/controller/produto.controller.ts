@@ -16,7 +16,7 @@ import { Produto } from '../../produto/entities/produto.entity';
 import { JwtAuthGuard } from '../../auth/guard/jwt-auth.guard';
 import { ProdutoService } from '../../produto/service/produto.service';
 
-@ApiTags('Postagem')
+@ApiTags('Produtos')
 @Controller('/produtos')
 @ApiBearerAuth()
 export class ProdutoController {
