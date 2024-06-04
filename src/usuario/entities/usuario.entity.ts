@@ -34,4 +34,8 @@ export class Usuario {
   @ApiProperty()
   @OneToMany(() => Produto, (produto) => produto.usuario)
   produto: Produto[];
+
+  @ApiProperty()
+  @Column({ default: false })
+  admin: boolean;
 }
