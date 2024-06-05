@@ -15,6 +15,7 @@ import { Categoria } from '../entities/categoria.entity';
 import { CategoriaService } from '../services/categoria.service';
 import { JwtAuthGuard } from 'src/auth/guard/jwt-auth.guard';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { Produto } from '../../produto/entities/produto.entity';
 
 @ApiTags('Categorias')
 @Controller('/categorias')
@@ -28,11 +29,18 @@ export class CategoriaController {
     return this.categoriaService.findAll();
   }
 
-  @UseGuards(JwtAuthGuard)
   @Get('/:id')
   @HttpCode(HttpStatus.OK)
   findById(@Param('id', ParseIntPipe) id: number): Promise<Categoria> {
     return this.categoriaService.findById(id);
+  }
+
+  @Get('/:id/produto')
+  @HttpCode(HttpStatus.OK)
+  async findProductsByCategory(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<Produto[]> {
+    return this.categoriaService.findProductsByCategory(id);
   }
 
   @Get('/nome/:nome')
